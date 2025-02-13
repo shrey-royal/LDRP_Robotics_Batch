@@ -1,4 +1,4 @@
-int btn = 7, cs, ls = HIGH;
+int btn = 7, cs, ls = HIGH, ledState = LOW;
 
 void setup() {
   Serial.begin(9600);
@@ -9,9 +9,8 @@ void setup() {
 void loop() {
   cs = digitalRead(btn);
   if (ls == HIGH && cs == LOW) {
-    digitalWrite(LED_BUILTIN, HIGH);
-  } else if (ls == LOW && cs == HIGH){
-    digitalWrite(LED_BUILTIN, LOW);
+    ledState = !ledState;
   }
+  digitalWrite(LED_BUILTIN, ledState);
   ls = cs;
 }
